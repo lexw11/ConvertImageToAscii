@@ -11,20 +11,25 @@ namespace ConvertImageToAscii
         static void Main()
         {
             Program program = new Program();
-            program.btnConvertToAscii_Click();
+            Console.WriteLine("What image would you like to convert?");
+            string imagePath = Console.ReadLine();
+            Console.WriteLine("Please specify a pixel width:");
+            int width = Convert.ToInt32(Console.ReadLine());
+
+            program.btnConvertToAscii_Click(imagePath, width);
         }
 
         private string _AsciiChars = " .-:*+=%@##";
         //private string _AsciiChars = "##@%=+*:-. ";
 
-        private void btnConvertToAscii_Click()
+        private void btnConvertToAscii_Click(string imagePath, int width)
         {
             //const string imagePath = @"C:\Users\wrigh\Downloads\Mike_Wazowski.png";
-            const string imagePath = @"C:\Users\wrigh\Downloads\pupper.jpg";
+            //const string imagePath = @"C:\Users\wrigh\Downloads\pupper.jpg";
 
             Bitmap image = new Bitmap(imagePath, true);
 
-            image = GetReSizedImage(image, 150);
+            image = GetReSizedImage(image, width);
 
             string _Content = ConvertToAscii(image);
 
